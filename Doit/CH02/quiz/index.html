@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>CH02 QUIZ</title>
+  </head>
+  <body>
+    <div id="app">
+      <todo-footer></todo-footer>
+      <todo-list></todo-list>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+      Vue.component("todo-footer", {
+        template: "<div>This is another global child component</div>",
+      });
+
+      var cmp = {
+        template: "<div>This is another local child component</div>",
+      };
+      new Vue({
+        el: "#app",
+        component: {
+          "todo-list": cmp,
+        },
+      });
+    </script>
+  </body>
+</html>
