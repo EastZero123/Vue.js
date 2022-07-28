@@ -1,14 +1,20 @@
 <template>
+  <div class="black-bg" v-if="openmodal == true">
+    <div class="white-bg">
+      <h4>상세페이지임</h4>
+      <p>상세페이지 내용임</p>
+      <button @click="openmodal = false">닫기</button>
+    </div>
+  </div>
+
   <div class="menu">
     <a v-for="(A, i) in menu" :key="i">{{ A }}</a>
   </div>
 
-  <div v-for="(a, i) in products" :key="i">
-    <img src="" />
-    <h4>{{ a }}</h4>
-    <p>{{ products[i] }}</p>
-    <button @click="() => increase(i)">허위매물신고</button>
-    <span>신고수 : {{ ban[i] }}</span>
+  <div v-for="(a, i) in rooms" :key="i">
+    <img :src="rooms[i].image" class="room-img" />
+    <h4 @click="openmodal = true">{{ rooms[i].content }}</h4>
+    <p>{{ rooms[i].price }}</p>
   </div>
   <!-- <div>
     <h4>{{ products[0] }}</h4>
@@ -25,10 +31,14 @@
 </template>
 
 <script>
+import data from "./data/post.js";
+
 export default {
   name: "App",
   data() {
     return {
+      rooms: data,
+      openmodal: false,
       ban: [0, 0, 0],
       menu: ["Home", "Shop", "About"],
       price: ["50만원", "100만원", "200만원"],
@@ -45,6 +55,30 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+div {
+  box-sizing: border-box;
+}
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+.room-img {
+  width: 100%;
+  margin-top: 40px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
