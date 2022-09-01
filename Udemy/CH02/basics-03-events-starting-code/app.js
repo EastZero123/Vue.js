@@ -6,6 +6,14 @@ const app = Vue.createApp({
       confirmedName: "",
     };
   },
+  computed: {
+    fullnamne() {
+      if(this.name === '') {
+        return '';
+      }
+      return this.name + ' ' + 'Choi';
+    },
+  },
   methods: {
     confirmInput() {
       this.confirmedName = this.name;
