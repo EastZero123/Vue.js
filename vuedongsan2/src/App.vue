@@ -1,23 +1,14 @@
 <template>
-  <div class="black-bg" v-if="ismodal">
-    <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
-    </div>
+  <Modal :oneroom="oneroom" :ismodal="ismodal" :setdata="setdata" />
+  <div class="menu">
+    <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
-  <div v-else>
-    <div class="menu">
-      <a v-for="menu in menus" :key="menu">{{ menu }}</a>
-    </div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <div v-for="(product, i) in products" :key="i">
-      <img src="./assets/room1.jpg" class="room-img" />
-      <h4 :style="style1">{{ product }}</h4>
-      <p>가격</p>
-      <button @click="increase(i)">허위매물신고</button>
-      <span>신고수 : {{ report[i] }}</span>
-    </div>
-  </div>
+  <Discount />
+  <!-- <div v-else> -->
+
+  <Card :oneroom="oneroom" />
+
+  <!-- </div> -->
 
   <!-- <div>
     <h4 :style="style1">{{ products[0] }}</h4>
@@ -34,10 +25,17 @@
 </template>
 
 <script>
+import oneroom from "./assets/oneroom";
+import DiscountA from "./Discount.vue";
+import ModalA from "./Modal.vue";
+import CardA from "./Card.vue";
+
 export default {
   name: "App",
   data() {
     return {
+      setdata: 0,
+      oneroom: oneroom,
       ismodal: false,
       price1: 60,
       price2: 70,
@@ -47,7 +45,11 @@ export default {
       report: [0, 0, 0],
     };
   },
-  components: {},
+  components: {
+    Discount: DiscountA,
+    Modal: ModalA,
+    Card: CardA,
+  },
   methods: {
     increase(i) {
       this.report[i]++;
@@ -62,6 +64,12 @@ body {
 }
 div {
   box-sizing: border-box;
+}
+.discount {
+  background: #eee;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
 }
 .black-bg {
   width: 100%;
