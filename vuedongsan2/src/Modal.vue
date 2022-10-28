@@ -3,7 +3,7 @@
     <div class="white-bg">
       <h4>{{ oneroom[setdata].title }}</h4>
       <p>{{ oneroom[setdata].content }}</p>
-      <!-- <button v-on:click="ismodal = false">닫기</button> -->
+      <button v-on:click="$emit('toggleModal')">닫기</button>
     </div>
   </div>
 </template>

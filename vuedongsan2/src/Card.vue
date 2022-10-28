@@ -1,13 +1,7 @@
 <template lang="">
-  <div v-for="(room, i) in oneroom" :key="i">
+  <div>
     <img :src="room.image" class="room-img" />
-    <h4
-      :style="style1"
-      v-on:click="
-        ismodal = true;
-        setdata = i;
-      "
-    >
+    <h4 @click="$emit('toggleModal', room.id)">
       {{ room.title }}
     </h4>
     <p>{{ room.price }}</p>
@@ -19,8 +13,8 @@
 export default {
   name: "CardA",
   props: {
-    oneroom: Array,
-    ismoda: Boolean,
+    room: Array,
+    ismodal: Boolean,
     setdata: Number,
   },
 };

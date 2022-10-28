@@ -1,12 +1,27 @@
 <template>
-  <Modal :oneroom="oneroom" :ismodal="ismodal" :setdata="setdata" />
+  <Modal
+    @toggleModal="ismodal = !ismodal"
+    :oneroom="oneroom"
+    :ismodal="ismodal"
+    :setdata="setdata"
+  />
   <div class="menu">
     <a v-for="menu in menus" :key="menu">{{ menu }}</a>
   </div>
   <Discount />
   <!-- <div v-else> -->
 
-  <Card :oneroom="oneroom" />
+  <div>
+    <Card
+      @toggleModal="
+        ismodal = !ismodal;
+        setdata = $event;
+      "
+      :room="oneroom[i]"
+      v-for="(room, i) in oneroom"
+      :key="room"
+    />
+  </div>
 
   <!-- </div> -->
 
@@ -34,6 +49,7 @@ export default {
   name: "App",
   data() {
     return {
+      object: { name: "Choie", age: 20 },
       setdata: 0,
       oneroom: oneroom,
       ismodal: false,
