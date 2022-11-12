@@ -3,19 +3,22 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: "",
-    }
+    };
   },
   methods: {
+    submitForm(e) {
+      alert("SUbmit");
+    },
     setName(event) {
-      this.name = event.target.value
+      this.name = event.target.value;
     },
     add() {
-      this.counter++
+      this.counter++;
     },
     minus() {
-      this.counter--
+      this.counter--;
     },
   },
-})
+});
 
-app.mount("#events")
+app.mount("#events");
