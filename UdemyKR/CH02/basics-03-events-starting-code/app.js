@@ -3,22 +3,57 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: "",
-    };
+      lastName: "",
+      fullname: "",
+    }
+  },
+  watch: {
+    name(value) {
+      if (value === "") {
+        this.fullname = ""
+      } else {
+        this.fullname = value + " " + this.lastName
+      }
+    },
+    lastName(value) {
+      if (value === "") {
+        this.fullname = ""
+      } else {
+        this.fullname = this.name + " " + value
+      }
+    },
+  },
+  computed: {
+    // fullname() {
+    //   console.log('Running again...');
+    //   if (this.name === '') {
+    //     return '';
+    //   }
+    //   return this.name + ' ' + 'Schwarzmüller';
+    // },
   },
   methods: {
-    submitForm(e) {
-      alert("SUbmit");
+    outputFullname() {
+      console.log("Running again...")
+      if (this.name === "") {
+        return ""
+      }
+      return this.name + " " + "Schwarzmüller"
     },
     setName(event) {
-      this.name = event.target.value;
+      this.name = event.target.value
     },
-    add() {
-      this.counter++;
+    add(num) {
+      this.counter = this.counter + num
     },
-    minus() {
-      this.counter--;
+    reduce(num) {
+      this.counter = this.counter - num
+      // this.counter--;
+    },
+    resetInput() {
+      this.name = ""
     },
   },
-});
+})
 
-app.mount("#events");
+app.mount("#events")
